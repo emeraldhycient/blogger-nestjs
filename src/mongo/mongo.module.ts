@@ -1,4 +1,9 @@
+// mongo/mongo.module.ts
 import { Module } from '@nestjs/common';
+import { PrismaService } from '../prisma.service';
 
-@Module({})
-export class MongoModule {}
+@Module({
+    providers: [PrismaService],
+    exports: [PrismaService],
+})
+export class MongoModule { }
