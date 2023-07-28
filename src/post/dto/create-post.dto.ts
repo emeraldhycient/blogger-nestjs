@@ -1,7 +1,7 @@
 export class CreatePostDto {
-    title: string
-    content: string
-    published: boolean
-    authorId: number
-    categoryId: string
+    title: string;
+    content: string;
+    published: boolean;
+    authorId: number;
+    categoryId: string;
 }

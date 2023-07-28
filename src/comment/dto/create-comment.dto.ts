@@ -1,5 +1,5 @@
 export class CreateCommentDto {
-    content: string
-    postId: string
-    authorId: string
+    content: string;
+    postId: string;
+    authorId: string;
 }

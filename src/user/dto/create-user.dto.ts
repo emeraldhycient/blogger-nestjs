@@ -1,4 +1,18 @@
+import {
+    IsInt,
+    Length,
+    IsEmail,
+    IsDate,
+    Min,
+    Max,
+} from 'class-validator';
+
 export class CreateUserDto {
-    email: string
-    name: string
+
+    @IsEmail()
+    email: string;
+     
+    @Min(3) 
+    @Max(20)
+    name: string;
 }
