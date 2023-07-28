@@ -1,1 +1,7 @@
-export class CreatePostDto {}
+export class CreatePostDto {
+    title: string
+    content: string
+    published: boolean
+    authorId: number
+    categoryId: string
+}
