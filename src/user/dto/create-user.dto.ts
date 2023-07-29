@@ -1,18 +1,13 @@
 import {
-    IsInt,
     Length,
-    IsEmail,
-    IsDate,
-    Min,
-    Max,
+    IsEmail
 } from 'class-validator';
 
 export class CreateUserDto {
 
     @IsEmail()
     email: string;
-     
-    @Min(3) 
-    @Max(20)
+
+    @Length(4, 20)
     name: string;
 }
