@@ -16,10 +16,11 @@ export class CategoryService {
         }
       })
       return {
-        category,
-        message: "category created successfully"
+        data: category,
+        message: "category created successfully edited"
       };
     } catch (error) {
+      console.log(error)
       throw new InternalServerErrorException(error)
     }
 
@@ -29,7 +30,7 @@ export class CategoryService {
     try {
       const Categories = await this.PrismaService.category.findMany()
       return {
-        Categories,
+        data: Categories,
         message: "Categories fetched successfully"
       }
     } catch (error) {
@@ -46,7 +47,7 @@ export class CategoryService {
       }
       )
       return {
-        Category,
+        data: Category,
         message: "Category fetched successfully"
       }
     } catch (error) {
@@ -65,7 +66,7 @@ export class CategoryService {
         }
       })
       return {
-        Category,
+        data: Category,
         message: "Category updated successfully"
       }
 
@@ -82,7 +83,7 @@ export class CategoryService {
         }
       })
       return {
-        Category,
+        data: Category,
         message: "Category deleted successfully"
       }
     } catch (error) {
