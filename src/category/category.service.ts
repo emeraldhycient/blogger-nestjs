@@ -1,26 +1,92 @@
-import { Injectable } from '@nestjs/common';
+import { Category } from './entities/category.entity';
+import { PrismaService } from './../prisma.service';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoryService {
-  create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+  constructor(private readonly PrismaService: PrismaService) { }
+
+  async create(createCategoryDto: CreateCategoryDto) {
+    try {
+      const category = await this.PrismaService.category.create({
+        data: {
+          title: createCategoryDto.title,
+        }
+      })
+      return {
+        category,
+        message: "category created successfully"
+      };
+    } catch (error) {
+      throw new InternalServerErrorException(error)
+    }
+
   }
 
-  findAll() {
-    return `This action returns all category`;
+  async findAll() {
+    try {
+      const Categories = await this.PrismaService.category.findMany()
+      return {
+        Categories,
+        message: "Categories fetched successfully"
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error)
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
+  async findOne(id: string) {
+    try {
+      const Category = await this.PrismaService.category.findUnique({
+        where: {
+          id
+        }
+      }
+      )
+      return {
+        Category,
+        message: "Category fetched successfully"
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error)
+    }
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
+    try {
+      const Category = await this.PrismaService.category.update({
+        where: {
+          id
+        },
+        data: {
+          title: updateCategoryDto.title
+        }
+      })
+      return {
+        Category,
+        message: "Category updated successfully"
+      }
+
+    } catch (error) {
+      throw new InternalServerErrorException(error)
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  async remove(id: string) {
+    try {
+      const Category = await this.PrismaService.category.delete({
+        where: {
+          id
+        }
+      })
+      return {
+        Category,
+        message: "Category deleted successfully"
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error)
+    }
   }
 }

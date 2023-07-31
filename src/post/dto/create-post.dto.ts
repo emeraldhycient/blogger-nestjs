@@ -1,14 +1,7 @@
 import {
-    validate,
-    validateOrReject,
-    Contains,
     IsInt,
     Length,
-    IsEmail,
-    IsFQDN,
-    IsDate,
-    Min,
-    Max,
+    Min
 } from 'class-validator';
 
 
